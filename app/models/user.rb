@@ -14,8 +14,6 @@ class User < ActiveRecord::Base
 
   after_create :set_random_avatar
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
 
 
   def nickname
