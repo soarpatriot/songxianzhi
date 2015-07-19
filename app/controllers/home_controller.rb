@@ -3,8 +3,9 @@ class HomeController < ApplicationController
    def index
       weixin_base = "https://open.weixin.qq.com/connect/oauth2/authorize?"
       appid="wx5940611bb6faccc3"
-      redirect_url = "http://www.cityhub.me/post"
-      encode_url = URI.encode(redirect_url) 
+      redirect_url = "http://www.cityhub.me/posts/new"
+      encode_url = ERB::Util.url_encode(redirect_url)
+      # encode_url = URI.escape(redirect_url) 
       url = "#{weixin_base}appid=#{appid}&redirect_url=#{encode_url}&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
       @weixin_url = url 
       # @categories_information = []
