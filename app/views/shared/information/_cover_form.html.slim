@@ -1,0 +1,3 @@
+= form_tag Photo.new, method:"patch", remote:true, multipart: true, id:"uplodate-cover"  do
+  = hidden_field_tag "photo[id]", nil, id:"photo-id"
+  = hidden_field_tag "photo[ids]", nil, id:"photo-ids"

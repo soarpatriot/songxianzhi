@@ -1,0 +1,73 @@
+
+.row
+  .col-md-4
+    #dropzone
+      | 拖动文件到此区域可上传
+p
+
+div class="row fileupload-buttonbar"
+  div class="col-lg-2"
+    span class="btn btn-success fileinput-button"
+      i class="glyphicon glyphicon-plus"
+      span
+        | 上传图片
+      input type="file" name="photo[image]" multiple="true"
+
+    //
+      button type="submit" class="btn btn-primary start"
+        i class="glyphicon glyphicon-upload"
+        span
+      button type="reset" class="btn btn-warning cancel"
+        i class="glyphicon glyphicon-ban-circle"
+        span Cancel upload
+      button type="button" class="btn btn-danger delete"
+        i class="glyphicon glyphicon-trash"
+        span Delete
+      input type="checkbox" class="toggle"
+
+    span class="fileupload-process"
+
+
+  div class="col-lg-10 fileupload-progress fade"
+
+    div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+      div class="progress-bar progress-bar-success" style="width:0%;"
+
+
+    div class="progress-extended">&nbsp;
+
+.row
+  .col-lg-12
+    table role="presentation" class="table table-striped"
+      tbody class="files"
+
+        - @information.photos.each  do |photo|
+          - unless photo.image.url.blank?
+            tr class="template-download in"
+              td
+                span class="preview"
+                  input name="information[photo_ids][]" type="hidden" value="#{photo.id}"
+                  a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
+                    img src="#{photo.image.try(:thumb).url}" class="img-thumbnail"
+
+              td
+                p class="name"
+                  a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
+                    span = "#{photo.image.file.filename}"
+              td
+                - if photo.cover
+                  span class="label label-success cover-span fade in" 当前封面
+                - else
+                  span class="label label-success cover-span fade" 当前封面
+
+              td
+                span class="size"
+                  | #{human_file_size(photo.image.size)}
+              td
+                - if photo.cover
+                  input type="button" id="#{photo.id}" class="btn btn-info cover-binding fade" value="设为封面"
+                - else
+                  input type="button" id="#{photo.id}" class="btn btn-info cover-binding" value="设为封面"
+                button class="btn btn-danger delete" data-type="DELETE" data-url="#{photo_path(photo)}"
+                  i class="glyphicon glyphicon-trash"
+                  span 删除

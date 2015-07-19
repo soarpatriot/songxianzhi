@@ -1,0 +1,55 @@
+- content_for :title do
+  title = "关于"
+- meta_description "免费开启本地020商店，继续前行，相信，生活会越来越好！"
+- meta_keywords "蔚县@我"
+.container
+  .row.hidden-sm.hidden-xs
+    .col-md-12.well
+      p.text-warning
+        | 为获得最佳浏览本站体验，推荐使用最新版本 Chrome, Firefox, Safari, IE9+ 等浏览器。您可以通过各大搜索引擎，搜狗，百度等获得相关浏览器的下载。
+      hr
+      p.text-muted 为什么使用最新浏览器
+      ul
+        li
+          | 使用最新浏览器可加快页面的加载速度，（手机相应版本）可减少流量消耗。
+        li
+          | 本站使用最新技术开发，只有以上浏览器才能获得更好的浏览体验。
+  .row
+    .col-md-3
+      h4 免费
+      p 个人发布信息完全免费，您可以发布房屋出租买卖，商品买卖，招聘，促销等信息。
+    .col-md-3
+      h4 注意事项
+      p 禁止发布违反国家法律法规内容的信息。
+    .col-md-3
+      h4 设备
+      p
+        | 本站支持多设备浏览，电脑，手机，pad都可以或获得最佳浏览体验，
+        span.text-danger 即将苹果手机版本应用，敬请期待
+      p.text-info.hidden-sm.hidden-xs
+        strong Android应用: （扫描二维码或点击下载）
+      p.text-info.hidden-sm.hidden-xs
+        = image_tag("qrcode.png")
+      p.hidden-sm.hidden-xs
+        a href="/uploads/android/CityAndroid.apk" class="btn btn-success btn-block" 下载
+    .col-md-3
+      h4 反馈
+      p 您在使用时，随时都可以提出您的宝贵意见建议。对于您的建议，我们并不能保证一一回复和修改，敬请谅解
+      p
+        a href="#advice" data-toggle="modal" data-target="#city-advice" 提意见
+
+div.modal.fade.bs-example-modal-lg id="city-advice"
+  div.modal-dialog.modal-lg
+    div.modal-content
+      div.modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4 class="modal-title" = "意见建议"
+      div.modal-body
+
+          .row
+            .col-md-12
+              = form_tag("/feedback", method: "post", class: "form", role:"form") do
+                .form-group
+                  = text_area_tag "content",nil, rows: 8,class:"form-control"
+                p
+                  = submit_tag("提交",class:"btn btn-primary")

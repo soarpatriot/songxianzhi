@@ -1,0 +1,47 @@
+zh-CN:
+  activerecord:
+      models:
+        user: "用户"
+        information: "信息"
+        shop: "商店"
+        activity: "商品促销"
+      attributes:
+        shop:
+           title: "商店名称"
+           description: "经营描述"
+           image: "店铺照片"
+           contact: "联系人"
+           phone: "电话"
+           address: "地址"
+        activity:
+           title: "促销或商品"
+           description: "描述"
+           image: "照片"
+           price: "价格"
+        user:
+          name: "用户名"
+          avatar: "头像"
+          email: "email"
+          password: "密码"
+          password_confirmation:  "确认密码"
+        information:
+          title: "标题"
+          category: "类别"
+          price: "价格"
+          description: "详细描述"
+          image: "图片"
+          publish: "发布"
+          contact: "联系人"
+          qq: "QQ"
+          mobile_number: "手机号码"
+          weixin: "微信"
+      errors:
+        template:
+          header:
+            one:   "发生一个错误， {{model}}保存不成功"
+            other: "发生{{count}}个错误， {{model}}保存不成功"
+          body:    "请检查如下不合适信息:"
+        messages:
+          blank: "不能为空"
+          taken: "已经存在，请更换一个"
+

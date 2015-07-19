@@ -1,0 +1,30 @@
+.col-md-12
+
+  table.table.table-striped.table-hover.table-condensed
+    thead
+      tr
+        th 名称
+        th Email
+        th 头像
+        th 手机
+        th QQ
+        th 微信
+        th 操作
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.name
+          td = user.email
+          td
+             img src="#{user.avatar.thumb.url}" class="img-thumbnail"
+          th = user.mobile_number
+          th = user.qq
+          th = user.weixin
+
+          td
+             .btn-group
+                = link_to '删除', admin_user_path(user), data: {:confirm => '确定删除吗?'}, :method => :delete, class:"btn btn-danger"
+  .row
+    .col-lg-12.toolbar
+      .pull-right = paginate @users, theme: 'twitter-bootstrap-3'
+

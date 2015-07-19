@@ -1,0 +1,4 @@
+= simple_form_for [:admin,@information] do |f|
+  = f.error_notification
+  = f.association :category, require: true, collection: Category.all, label_method: :name, value_method: :id, class: "col-md-3"
+  = f.button :submit, class:"btn btn-primary"

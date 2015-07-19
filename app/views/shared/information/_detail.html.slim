@@ -1,0 +1,72 @@
+
+.col-md-3.col-sm-3.col-xs-6.item
+  .thumbnail
+     - unless information.cover.try(:image).try(:small).try(:url).blank?
+       - if information.own_by_shop? && !information.owner.url.blank?
+        = link_to information_url(subdomain:information.owner.url, id:information.id, category_id:information.category.id, page: params[:page]) do
+          img src="#{information.cover.try(:image).try(:small).url}" class="img-responsive"
+       - else
+         = link_to information_url(id: information.id, category_id: information.category.id, page: params[:page]) do
+           img src="#{information.cover.try(:image).try(:small).url}" class="img-responsive"
+
+     .caption
+
+       p
+          - if params[:controller].end_with?("home")
+            = link_to information_index_url(category_id: information.category.try(:id)),class:"btn" do
+              span.label.label-warning #{information.category.try(:name)}
+            hr
+       p.text-danger
+          strong = number_to_currency(information.price, :unit => "￥")
+
+       - if information.own_by_shop? && !information.owner.url.blank?
+         = link_to information_url(subdomain:information.owner.url, id: information.id, category_id: information.category.id, page: params[:page]) do
+             h5.word-break-text = "#{information.title}"
+       - else
+         = link_to information_url(id: information.id, category_id: information.category.id, page: params[:page]) do
+           h5.word-break-text = "#{information.title}"
+
+
+       p.text-muted
+         small
+           - if information.own_by_shop?
+             |
+             span.label.label-success 店铺
+             | &nbsp;
+             - if information.own_by_shop? && !information.owner.url.blank?
+               = link_to information.owner.access_url do
+                 span.text-warning
+                   | #{information.owner.title}
+                   | &nbsp;
+                   i class="fa fa-chevron-right"
+             -else
+               = link_to shop_url(information.owner) do
+                 span.text-warning
+                   | #{information.owner.title}
+                   | &nbsp;
+                   i class="fa fa-chevron-right"
+
+           - if information.own_by_user?
+             |
+             span.label.label-info 个人
+             | &nbsp; #{information.contact}
+       p.text-muted
+         small
+           | #{time_ago_in_words information.synchronized_at}前
+           - if information.visit_count > 0
+             | , #{information.visit_count} 次浏览&nbsp;
+           - comments_count = information.comments.count
+           - if comments_count > 0
+              | , #{comments_count} 评论&nbsp;
+           - if information.get_likes.size > 0
+             i class="fa fa-heart favorite-heart"
+             |   #{information.get_likes.size}
+
+       //
+        p
+           - if information.own_by_user?
+
+              = link_to "详情", information, class:"btn btn-primary"
+           - if information.own_by_shop?
+
+              = link_to "详情", information_shop_url(information.owner,information), class:"btn btn-primary"

@@ -1,0 +1,45 @@
+- if user_signed_in?
+  li.dropdown.my-dropdown
+      = link_to  user_url(current_user), class: 'dropdown-toggle', "data-toggle"=> 'dropdown' do
+         = image_tag("#{current_user.avatar.try(:thumb).url}", size: "20x20", alt: "touxiang ")
+         | &nbsp; #{current_user.email} &nbsp;
+         b.caret
+      ul.dropdown-menu
+         li
+            = link_to  user_url(current_user) do
+               span.glyphicon.glyphicon-folder-close
+               | &nbsp; 我的资料
+         li
+            = link_to  i_information_index_url do
+               span.glyphicon.glyphicon-info-sign
+               | &nbsp; 我的信息
+
+         li class="#{( params[:controller].end_with?('shops')  or params[:controller].end_with?('infos') ) ? 'active':''}"
+           - if current_user.shop.nil?
+             = link_to  guide_i_shops_path do
+                span.glyphicon.glyphicon-shopping-cart
+                | &nbsp; 我的商店
+           - else
+             = link_to i_shop_path(current_user.shop.id)
+                 span.glyphicon.glyphicon-shopping-cart
+                 | &nbsp; 我的商店
+
+         li.divider
+         li
+           = link_to new_i_information_url do
+             span.glyphicon.glyphicon-send
+             |&nbsp; 发表信息
+
+  li
+      = link_to destroy_user_session_url, method: "delete" do
+         span.glyphicon.glyphicon-log-out
+         | 退出
+- else
+  li
+      = link_to new_user_registration_url do
+        span.glyphicon.glyphicon-registration-mark
+        | &nbsp;注册
+  li
+      = link_to new_user_session_url do
+         span.glyphicon.glyphicon-log-in
+         | &nbsp; 登陆

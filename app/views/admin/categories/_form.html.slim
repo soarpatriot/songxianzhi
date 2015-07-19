@@ -1,0 +1,7 @@
+
+= simple_form_for( [:admin, @category], html:{role:"form"}) do |f|
+
+  = f.input :name
+  = f.input :rank
+  = f.input :description, as: :text
+  = f.button :submit, "提交", class:"btn btn-primary"

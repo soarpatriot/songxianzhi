@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        = render "shared/meta"
+        = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+        = render "shared/ie9"
+        = javascript_include_tag 'logo', 'data-turbolinks-track' => true
+        = csrf_meta_tags
+    body
+        = render "shared/brand"
+        = render "shared/flash_messages"
+        .container.home-container
+           = yield
+        = render "shared/footer"
+
+

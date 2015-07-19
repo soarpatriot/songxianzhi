@@ -1,0 +1,27 @@
+.col-md-12
+
+  table.table.table-striped.table-hover.table-condensed
+    thead
+      tr
+        th 标题
+        th 描述
+        th 图片
+        th 发布
+        th 操作
+    tbody
+      - @information.each do |information|
+        tr
+          td = truncate(information.title,length:20)
+          td = truncate(information.description,length:20)
+          td
+             img src="#{information.image.thumb.url}" class="img-thumbnail"
+          th = information.publish_text_tip
+          td
+             .btn-group
+                = link_to '编辑类别', edit_admin_information_path(information), class:"btn btn-warning"
+                = link_to '删除', admin_information_path(information), data: {:confirm => '确定删除吗?'}, :method => :delete, class:"btn btn-danger"
+  .row
+    .col-lg-12.toolbar
+      .pull-right = paginate @information, theme: 'twitter-bootstrap-3'
+
+

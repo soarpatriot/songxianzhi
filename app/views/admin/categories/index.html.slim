@@ -1,0 +1,25 @@
+.col-md-12
+  p.pull-right
+      = link_to "添加类别", new_admin_category_path, class:"btn btn-primary"
+  table.table.table-striped.table-hover.table-condensed
+    thead
+      tr
+        th 名称
+        th 排序
+        th 描述
+        th 操作
+    tbody
+      - @categories.each do |category|
+        tr
+          td = truncate(category.name,length:20)
+          th = category.rank
+          td = truncate(category.description,length:20)
+          td
+             .btn-group
+                = link_to '修改', edit_admin_category_path(category), class:"btn btn-warning"
+                = link_to '删除', admin_category_path(category), data: {:confirm => '确定删除吗?'}, :method => :delete, class:"btn btn-danger"
+  .row
+    .col-lg-12.toolbar
+      .pull-right = paginate @categories, theme: 'twitter-bootstrap-3'
+
+

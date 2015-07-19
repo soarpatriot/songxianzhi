@@ -1,0 +1,29 @@
+hr
+h4
+  | 评论 &nbsp;
+  span class="badge" #{@information.comments.count}
+ul.media-list
+  - @comments.each do |comment|
+      li.media
+        div.media-left class="pull-left"
+          = image_tag comment.user.try(:avatar).try(:thumb).try(:url), size:"54x54", class:"img-responsive img-rounded img-thumbnail"
+
+        .media-body
+          h4 class="media-heading text-muted"
+            | #{comment.user.nickname}
+            small
+              |  #{time_ago_in_words comment.created_at}前
+          p #{comment.content}
+.row
+  .col-lg-12.toolbar
+    .pull-right = paginate @comments, theme: 'twitter-bootstrap-3'
+
+hr
+- unless current_user.nil?
+  h4 写评论
+  .row
+    .col-md-6
+      = simple_form_for @comment, url:commented_information_url(@information), method:"patch" do |f|
+        = f.error_notification
+        = f.input :content, label:false, as: :text
+        = f.submit "发表", class:"btn btn-primary"

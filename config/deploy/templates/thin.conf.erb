@@ -1,0 +1,13 @@
+pid: <%= shared_path %>/tmp/pids/thin.pid
+timeout: 30
+wait: 30
+log: log/thin.log
+max_conns: 10240
+require: []
+environment: production
+max_persistent_conns: 2048
+servers: 2
+threaded: false
+no-epoll: true
+daemonize: true
+socket: <%= shared_path %>/tmp/sockets/thin.sock

@@ -1,0 +1,23 @@
+- content_for :title do
+  title = @information.title
+- meta_description "#{@information.title},#{@information.description}"
+- meta_keywords "#{@information.category.name} #{@information.title}"
+
+.row
+  .col-md-12
+
+          ol class="breadcrumb"
+            li
+              = link_to "首页", root_url
+            li
+              = link_to @information.category.name, information_index_url(category_id:@information.category.id, page:params[:page])
+            li class="active" = "#{@information.title.truncate(10)}"
+
+= render "shared/information/one"
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+.col-md-12
+
+  table.table.table-striped.table-hover.table-condensed
+    thead
+      tr
+        th 标题
+        th 描述
+        th 图片
+        th 联系人
+        th 电话
+        th 操作
+    tbody
+      - @shops.each do |shop|
+        tr
+          td = truncate(shop.title,length:20)
+          td = truncate(shop.description,length:20)
+          td
+             img src="#{shop.image.thumb.url}" class="img-thumbnail"
+          th = shop.contact
+          th = shop.phone
+          td
+             .btn-group
+                = link_to '删除', admin_shop_path(shop), data: {:confirm => '确定删除吗?'}, :method => :delete, class:"btn btn-danger"
+  .row
+    .col-lg-12.toolbar
+      .pull-right = paginate @shops, theme: 'twitter-bootstrap-3'
+
+

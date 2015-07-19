@@ -1,0 +1,26 @@
+doctype html
+html
+    head
+      = render "shared/meta"
+      = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+      = render "shared/ie9"
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = csrf_meta_tags
+    body
+      - if admin_signed_in?
+        = render "shared/admin_navbar"
+      - else
+        = render "shared/session_navbar"
+      = render "shared/flash_messages"
+
+      - if admin_signed_in?
+        .container.home-container
+          .row
+            = yield
+      - else
+        .container.home-container
+          .row
+            .col-lg-4.col-lg-offset-4
+              = yield
+      = render "shared/footer"
+

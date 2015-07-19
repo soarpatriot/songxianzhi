@@ -1,0 +1,9 @@
+domain: "localhost"
+host: "http://localhost:3000"
+asset_host: "http://localhost:3000"
+email_address: "smtp.126.com"
+email_port: 25
+email_domain: "126.com"
+email_user_name: "xx"
+email_password: "xx"
+paginate_per_page: 2

@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require home
+ *= require information
+ *= require sidebar
+
+
+ *= require ngprogress
+ *= require shop
+ *= require animate+animo
+
+ *= require blueimp-gallery.min
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
+
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.alert-notice {
+  @extend .alert-success;
+}
+
+.alert-alert{
+  @extend .alert-warning
+}
+.enter-shop-btn{
+
+  color: #FF0000;
+}

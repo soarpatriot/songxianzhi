@@ -1,0 +1,7 @@
+.container
+  .row
+    .col-md-12
+        - flash.keys.each do |key|
+          .alert class="alert-#{key}"
+            = flash[key]
+            button type="button" class="close" data-dismiss="alert" aria-hidden="true" &times;

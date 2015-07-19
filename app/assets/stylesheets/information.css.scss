@@ -1,0 +1,72 @@
+
+@import "compass";
+
+.word-break-text{
+  @include word-break(break-all);
+}
+
+.information-contact{
+   ul{
+      li{
+        list-style-type:none;
+        padding-left:10px;
+        padding-right:10px;
+        line-height:60px;
+        height: 60px;
+
+        i{
+          margin-top:10px;
+        }
+      }
+   }
+
+   #margin-top:40px;
+   font-size: 17px;
+   .contact-label{
+      width: 90px;
+   }
+   .contact-info{
+      padding-top:7px;
+   }
+   #line-height: 50px;
+   dl{
+     dt{
+       #font-color: #fff;
+       height:40px;
+     }
+     dd{
+        height:40px;
+     }
+   }
+   .price{
+
+      font-wight: 700;
+      font-size: 24px;
+   }
+}
+
+#dropzone{
+  padding: 5px;
+  border: 1px dashed;
+  height: 50px;
+  line-height: 50px;
+  display: table-cell;
+  vertical-align: middle;
+}
+#dropzone.in {
+  width: 100%;
+  height: 200px;
+  line-height: 200px;
+  font-size: larger;
+}
+#dropzone.hover {
+  background: #cccccc;
+}
+#dropzone.fade {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  opacity: 1;
+}
