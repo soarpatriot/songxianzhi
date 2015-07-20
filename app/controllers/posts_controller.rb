@@ -23,8 +23,7 @@ class PostsController < ApplicationController
        @user.update openid: parsed[openid], nickname: parsed[:nickname], sex: parsed[:sex], province: parsed[:province], city: parsed[:city], headimgurl: parsed[:headimgurl], unionid: parsed[:unionid]
        Rails.logger.info "response: #{response}"
      rescue => e
-       Rails.logger.info "execption: #{e.response}"
-       e.response
+       Rails.logger.info "execption: #{e}"
      end  
      
 
