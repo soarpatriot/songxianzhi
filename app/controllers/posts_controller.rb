@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
      begin
        response = RestClient.get url 
-       parsed = JSON.parse(string, symbolize_names:true)
+       parsed = JSON.parse(response, symbolize_names:true)
        @user = User.where(openid:parsed[:openid]).first_or_create 
        @user.update openid: parsed[openid], nickname: parsed[:nickname], sex: parsed[:sex], province: parsed[:province], city: parsed[:city], headimgurl: parsed[:headimgurl], unionid: parsed[:unionid]
        Rails.logger.info "response: #{response}"
