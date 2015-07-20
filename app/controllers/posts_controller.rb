@@ -10,7 +10,7 @@ class PostsController < ApplicationController
      wenxin_base = "https://api.weixin.qq.com/sns/oauth2/access_token?"
      appid = "wx5940611bb6faccc3"
      secret = "655870e4c49d7e85b6b2222a1ee470eb"
-     grant_type = "anthorization_code"
+     grant_type = "authorization_code"
      
      url = "#{wenxin_base}appid=#{appid}&secret=#{secret}&code=#{code}&grant_type=#{grant_type}"
  
