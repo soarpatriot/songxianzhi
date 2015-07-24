@@ -28,7 +28,7 @@ class PostsController < ApplicationController
      user_data = JSON.parse(user_info_response, symbolize_names:true)
 
      @user = User.where(openid:user_data[:openid]).first_or_create 
-     @user.update openid: user_date[:openid], nickname: user_data[:nickname], sex: user_data[:sex], province: user_data[:province], city: user_data[:city], headimgurl: user_data[:headimgurl], unionid: user_data[:unionid]
+     @user.update openid: user_data[:openid], nickname: user_data[:nickname], sex: user_data[:sex], province: user_data[:province], city: user_data[:city], headimgurl: user_data[:headimgurl], unionid: user_data[:unionid]
    
 
    end
