@@ -22,18 +22,26 @@ class PostsController < ApplicationController
      access_token = parsed[:access_token]
      openid = parsed[:openid]
 
-     user_info_url ="#{user_info_base}=#{access_token}&openid=#{openid}&lang=zh_CN"
-     
-     user_info_response = RestClient.get user_info_url
-     user_data = JSON.parse(user_info_response, symbolize_names:true)
+     unless openid.nil?
+       user_info_url ="#{user_info_base}=#{access_token}&openid=#{openid}&lang=zh_CN"
+       
+       user_info_response = RestClient.get user_info_url
+       user_data = JSON.parse(user_info_response, symbolize_names:true)
 
-     @user = User.where(openid:user_data[:openid]).first_or_create 
-     @user.update openid: user_data[:openid], nickname: user_data[:nickname], sex: user_data[:sex], province: user_data[:province], city: user_data[:city], headimgurl: user_data[:headimgurl], unionid: user_data[:unionid]
-   
+       @user = User.where(openid:user_data[:openid]).first_or_create 
+       @user.update openid: user_data[:openid], nickname: user_data[:nickname], sex: user_data[:sex], province: user_data[:province], city: user_data[:city], headimgurl: user_data[:headimgurl], unionid: user_data[:unionid]
+     else
+
+     end 
 
    end
 
    def show
+   end
+
+   def upload
+     @post = Post.new
+     render "new"
    end
 
    def edit
@@ -41,5 +49,9 @@ class PostsController < ApplicationController
    end
 
    def update
+   end
+
+   def create
+      
    end
 end

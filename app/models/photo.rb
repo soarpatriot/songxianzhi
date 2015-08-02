@@ -2,8 +2,9 @@ class Photo < ActiveRecord::Base
 
   belongs_to :imageable, polymorphic: true
 
+  
   include Rails.application.routes.url_helpers
-  mount_uploader :image, InformationImageUploader
+  mount_uploader :image, ImageUploader
 
 
   #one convenient method to pass jq_upload the necessary information

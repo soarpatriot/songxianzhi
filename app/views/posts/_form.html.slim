@@ -1,0 +1,6 @@
+= simple_form_for @post,html:{multiple:true, id:"fileupload"} do |f|
+  = f.error_notification
+  = f.input :description, input_html:{class:'form-control'}
+  = render "shared/posts/file_upload" 
+
+  = f.button :submit, class: "btn btn-primary"
