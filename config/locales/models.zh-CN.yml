@@ -5,6 +5,7 @@ zh-CN:
         information: "信息"
         shop: "商店"
         activity: "商品促销"
+        post: "闲置"
       attributes:
         shop:
            title: "商店名称"
@@ -35,6 +36,8 @@ zh-CN:
           qq: "QQ"
           mobile_number: "手机号码"
           weixin: "微信"
+        post:
+          description: "描述"
       errors:
         template:
           header:

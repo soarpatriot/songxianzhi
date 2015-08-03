@@ -1,0 +1,8 @@
+
+
+.container 
+  p #{@post.description}
+  
+  - @post.photos.each do | photo | 
+    img(src="#{photo.image.try(:thumb).try(:url)}")
+

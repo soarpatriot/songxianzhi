@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  
+   
+    
    def index 
 
    end 
@@ -37,6 +38,7 @@ class PostsController < ApplicationController
    end
 
    def show
+     @post = Post.find(params[:id])
    end
 
    def upload
@@ -52,6 +54,16 @@ class PostsController < ApplicationController
    end
 
    def create
-      
+     @post = Post.new(post_params)
+     unless post_params[:photo_ids].blank?
+       photos = Photo.find(post_params[:photo_ids])
+       @post.photos = photos
+     end
+     @post.save
+     redirect_to @post
+   end
+
+   def post_params
+     params.require(:post).permit(:id,:description,:photo_ids=>[])
    end
 end

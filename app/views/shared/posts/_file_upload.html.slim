@@ -24,7 +24,6 @@ div class="row fileupload-buttonbar"
   .col-lg-12
     table role="presentation" class="table table-striped"
       tbody class="files"
-       -unless @post.photos.nil? 
         - @post.photos.each  do |photo|
           - unless photo.image.url.blank?
             tr class="template-download in"
