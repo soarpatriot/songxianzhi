@@ -6,5 +6,17 @@
   - @post.photos.each do | photo | 
     a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
       img class="img-thumbnail img-inline" src="#{photo.image.try(:thumb).try(:url)}"
-
+  p 评论 
+  - @comments.each do | comment |
+      .row 
+        .col-md-12
+          | #{comment.content}
+  p 
+  .row
+   .col-lg-12.toolbar
+        .pull-right = paginate @comments, theme: 'twitter-bootstrap-3'
+  = simple_form_for @comment, url: commented_post_path(@post), method:"patch" do |f|
+    = f.error_notification
+    = f.input :content, label:false, as: :text
+    = f.submit '评',class:"btn btn-primary"
   = render "shared/posts/gallery"

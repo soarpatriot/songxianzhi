@@ -17,7 +17,9 @@ Rails.application.routes.draw do
       collection do 
         get 'upload'
       end
-    
+      member do 
+        patch "commented"
+      end 
   end
 
   root 'home#index'

@@ -39,7 +39,25 @@ class PostsController < ApplicationController
 
    def show
      @post = Post.find(params[:id])
+     @comment = Comment.new
+     @comments = @post.comments.page params[:page]
    end
+
+
+   def commented
+    @post = Post.find(params[:id])
+    @comment = Comment.new comment_params
+
+    ###comment.save
+    @post.comments << @comment
+      #@comment = Comment.new
+    #@category = @information.category
+    #@comments = @information.comments.page params[:page]
+
+    #render "show"
+    redirect_to @post
+  end
+
 
    def upload
      @post = Post.new
@@ -66,4 +84,9 @@ class PostsController < ApplicationController
    def post_params
      params.require(:post).permit(:id,:description,:photo_ids=>[])
    end
+   def comment_params
+     params.require(:comment).permit(:id, :content)
+   end
+
+
 end
