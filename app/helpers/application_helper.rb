@@ -49,4 +49,8 @@ module ApplicationHelper
 
     end
   end
+
+  def auth 
+
+  end
 end

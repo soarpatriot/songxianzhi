@@ -1,16 +1,25 @@
 
 
 .container 
-  p #{@post.description}
-  
-  - @post.photos.each do | photo | 
-    a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
-      img class="img-thumbnail img-inline" src="#{photo.image.try(:thumb).try(:url)}"
+  .media 
+    .media-left
+      a href="#"
+        img class="media-object" src="#{@current_user.try(:headimgurl)}"
+    .media-body
+      p #{@post.description}
+      
+      - @post.photos.each do | photo | 
+        a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
+          img class="img-thumbnail img-inline" src="#{photo.image.try(:thumb).try(:url)}"
+
+   
+  hr
   p 评论 
   - @comments.each do | comment |
       .row 
         .col-md-12
           | #{comment.content}
+
   p 
   .row
    .col-lg-12.toolbar
