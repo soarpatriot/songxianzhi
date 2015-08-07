@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
    def new 
      authorize 
+     @post = Post.new
    end
 
    def show
