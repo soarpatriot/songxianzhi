@@ -36,7 +36,6 @@ gem 'simple_form'
 gem "bower-rails", "~> 0.9.1"
 
 gem 'font-awesome-sass', '~> 4.2.0'
-gem 'ckeditor'
 
 gem 'geocoder'
 gem 'rest-client'

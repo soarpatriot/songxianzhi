@@ -1,5 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User, :type => :model do
+  context "user post" do 
+    it "create post" do 
+      user = create :user 
+      post = create :post
+      user.posts << post
+
+      expect(user.posts.size).to eq(1) 
+    end
+  end 
 end
