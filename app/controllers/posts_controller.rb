@@ -54,7 +54,7 @@ class PostsController < ApplicationController
        @post.photos = photos
      end
      @post.save
-     current_user.posts << @post
+     @current_user.posts << @post  unless @current_user.nil?
      redirect_to @post
    end
 
