@@ -16,6 +16,7 @@ class PostsController < ApplicationController
      @post = Post.find(params[:id])
      @comment = Comment.new
      @comments = @post.comments.page params[:page]
+     @voters = @post.votes_for.up.by_type(User).voters
    end
 
 
