@@ -45,6 +45,15 @@ class PostsController < ApplicationController
 
    def update
    end
+   def like
+      @post = Post.find(params[:id])
+      @has_voted = @current_user.voted_for? @post
+      @has_voted ? @post.unliked_by(@current_user) : @post.liked_by(@current_user)
+      @has_voted ? @has_voted = false : @has_voted = true
+      @voters = @post.votes_for.up.by_type(User).voters
+      @likes = @post.get_likes.size
+
+   end
 
    def create
      

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       end
       member do 
         patch "commented"
+        post "like"
       end 
   end
 

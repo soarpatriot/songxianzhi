@@ -4,15 +4,27 @@
   .media 
     .media-left
       a href="#"
-        img class="media-object" src="#{@current_user.try(:headimgurl)}" class="media-head"
+        img class="media-object media-head" src="#{@current_user.try(:headimgurl)}" 
     .media-body
       p #{@post.description}
       
       - @post.photos.each do | photo | 
         a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
           img class="img-thumbnail img-inline" src="#{photo.image.try(:thumb).try(:url)}"
-
-   
+  hr
+  .like-area
+    .like-opt
+      - unless @current_user.nil?
+        = link_to like_post_path(@post), class: "btn btn-default btn-sm favorite-btn", method: "post", remote: true do
+          span.favorite-span
+              - if @current_user.voted_for? @post
+                i id="favorite-icon" class="fa fa-heart favorite-heart"
+              - else
+                i id="favorite-icon" class="fa fa-heart-o favorite-heart"
+              | &nbsp;
+              span.like-count #{@post.get_likes.size}
+    .voters 
+       
   hr
   p 评论 
   - @comments.each do | comment |

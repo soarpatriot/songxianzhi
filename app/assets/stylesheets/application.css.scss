@@ -50,3 +50,15 @@
   width: 64px
 }
 
+.like-area{
+  @extend .clearfix
+}
+.like-opt{
+  float:left;
+  width: 80px 
+}
+
+.voters{
+  float: left;
+  
+}

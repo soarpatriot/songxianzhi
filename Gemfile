@@ -26,11 +26,11 @@ gem 'compass-rails'
 #gem 'bootstrap-sass', '~> 3.2.0'
 #gem 'sass-rails', '~> 4.0.3'
 
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.3.5'
 #gem 'sass-rails', '>= 3.2'
 gem 'sass-rails', '~> 4.0.3'
 
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '~> 5.0.0'
 gem 'simple_form'
 # gem 'sass-rails', '>= 3.2'
 gem "bower-rails", "~> 0.9.1"
