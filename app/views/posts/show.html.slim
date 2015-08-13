@@ -4,18 +4,23 @@
   .media-left
     a href="#"
       img class="media-object media-head" src="#{@current_user.try(:headimgurl)}" 
+
   .media-body
+    h4.media-heading #{@post.user.nickname}
     p #{@post.description}
     
     - @post.photos.each do | photo | 
       a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
         img class="img-thumbnail img-inline" src="#{photo.image.try(:thumb).try(:url)}"
+    p
+      small.text-muted #{time_ago_in_words @post.created_at}
+hr
 p
   - if @post.sent? 
     span.label.label-default 已送出
-  - if @post.sent? and @current_user.id == @post.user.id 
+  - if @post.sending? and @current_user.id == @post.user.id 
     = link_to "已送出", sent_post_path(@post), method: :patch,class: "btn btn-danger"
-hr
+p
 .like-area
   .like-opt
     - unless @current_user.nil?
@@ -34,9 +39,19 @@ hr
 hr
 p 评论 
 - @comments.each do | comment |
-    .row 
-      .col-md-12
-        | #{comment.content}
+    .media 
+      .media-left
+        a href="#"
+          img class="media-object media-head" src="#{comment.user.try(:headimgurl)}" 
+
+      .media-body
+        p
+     
+          | #{comment.content}
+        p.pull-right
+          small #{comment.user.nickname}
+          span &nbsp;&nbsp;
+          small.text-muted #{time_ago_in_words comment.created_at}
 
 p 
 .row

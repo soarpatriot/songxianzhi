@@ -24,7 +24,7 @@ class PostsController < ApplicationController
    def commented
     @post = Post.find(params[:id])
     @comment = Comment.new comment_params
-
+    @comment.user = @current_user
     ###comment.save
     @post.comments << @comment
       #@comment = Comment.new
