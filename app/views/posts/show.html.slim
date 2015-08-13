@@ -13,8 +13,8 @@
 p
   - if @post.sent? 
     span.label.label-default 已送出
-  - else if @post.sent? and @current_user.id == @post.user.id 
-    = link_to "已送出", sent_post_path(@post), method: :patch
+  - if @post.sent? and @current_user.id == @post.user.id 
+    = link_to "已送出", sent_post_path(@post), method: :patch,class: "btn btn-danger"
 hr
 .like-area
   .like-opt
