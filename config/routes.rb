@@ -20,9 +20,15 @@ Rails.application.routes.draw do
       member do 
         patch "commented"
         post "like"
+        patch "sent"
       end 
   end
 
+  resources :users do 
+    member do 
+      get 'posts'
+    end
+  end
   root 'home#index'
   
   # Example of regular route:

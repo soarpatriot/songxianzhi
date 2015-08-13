@@ -1,0 +1,12 @@
+
+
+table.table.table-hover 
+  thead 
+    th 1
+    th 图片
+    th 状态
+  tbody
+    - @post.each_with_index |index, post| do 
+      td #{index+1}
+      td #{post.photos.first.try(:thumb).url}
+      td 

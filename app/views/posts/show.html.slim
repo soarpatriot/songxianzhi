@@ -10,6 +10,11 @@
     - @post.photos.each do | photo | 
       a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
         img class="img-thumbnail img-inline" src="#{photo.image.try(:thumb).try(:url)}"
+p
+  - if @post.sent? 
+    span.label.label-default 已送出
+  - else if @post.sent? and @current_user.id == @post.user.id 
+    = link_to "已送出", sent_post_path(@post), method: :patch
 hr
 .like-area
   .like-opt

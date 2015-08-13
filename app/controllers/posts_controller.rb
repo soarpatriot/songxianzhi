@@ -18,6 +18,7 @@ class PostsController < ApplicationController
      @comments = @post.comments.page params[:page]
      @voters = @post.votes_for.up.by_type(User).voters
    end
+    
 
 
    def commented
@@ -38,6 +39,12 @@ class PostsController < ApplicationController
    def upload
      @post = Post.new
      render "new"
+   end
+
+   def sent 
+     @post = Post.find(params[:id])
+     @post.sent!
+     redirect_to @post
    end
 
    def edit
