@@ -56,8 +56,8 @@ hr
  .col-xs-3
    .comments-text 评论 
  .col-xs-3.col-xs-offset-6
-    a(href="#comment-modal" type="button" class="btn" data-toggle="modal" data-target="#comment-modal")
-      span.glyphicon.glyphicon-comment
+    a(href="#comment-modal" class="comments-btn" data-toggle="modal" data-target="#comment-modal")
+      i.fa.fa-comments
 - @comments.each do | comment |
     .media 
       .media-left
