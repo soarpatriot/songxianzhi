@@ -56,3 +56,4 @@
 
 //= require i_shop_new
 //= require posts
+//= require wechat
