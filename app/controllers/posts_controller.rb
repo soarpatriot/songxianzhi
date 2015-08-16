@@ -71,8 +71,12 @@ class PostsController < ApplicationController
        @post.photos = photos
      end
      @post.save
-     @current_user.posts << @post  unless @current_user.nil?
-     redirect_to @post
+     if @current_user.posts << @post and not @current_user.nil?
+       redirect_to @post
+     else
+       render :new
+     end
+
    end
 
    def post_params

@@ -1,5 +1,8 @@
 = simple_form_for @post,html:{multiple:true, id:"fileupload"} do |f|
   = f.error_notification
+  - unless @post.errors[:photos].blank?
+    .alert.alert-danger
+      | 请至少上传一张照片! 少年
   = f.input :description, input_html:{class:'form-control'}
   = render "shared/posts/file_upload" 
 

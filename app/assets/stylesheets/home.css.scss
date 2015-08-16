@@ -27,11 +27,33 @@ $global-font-size: 14px;
 body{
     @include global-font;
     background-color: #f9f9f9;
-    padding-top:80px;
-    #background: url(http://subtlepatterns.com/patterns/scribble_light.png) ;
+    padding-top:30px;
+    padding-bottom:80px;
 }
 
-
+.navbar-send{
+  @include border-radius(50%);
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  line-height: 60px;
+  text-align: center;
+  background: #f0ad4e;
+  border: 2px solid #ffffff;
+  top: 0;
+  left: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+  z-index: 20;
+  .btn-send{
+    @include border-radius(50%);
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 0;
+  } 
+  
+}
 .footer{
    padding-bottom:15px;
 }

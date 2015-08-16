@@ -2,11 +2,20 @@
 
 table.table.table-hover 
   thead 
-    th 1
+    th 序号
     th 图片
     th 状态
   tbody
-    - @post.each_with_index |index, post| do 
-      td #{index+1}
-      td #{post.photos.first.try(:thumb).url}
-      td 
+    - @posts.each_with_index do | post, index |  
+      tr
+        td #{index+1}
+        td 
+          = link_to post_path(post) do 
+            = image_tag "#{post.try(:photos).try(:first).try(:thumb).try(:url)}", size: "64x64"
+        td 
+          - if post.sending?
+            span.label.label-warning
+              | #{post.chinese_status} 
+          - else 
+            span.label.label-default
+              | #{post.chinese_status} 
