@@ -14,6 +14,7 @@ $global-font-size: 14px;
 
 .favorite-btn{
   @include border-radius(15px);
+  font-size: 20px;
 }
 
 .favorite-span{
@@ -30,80 +31,7 @@ body{
     #background: url(http://subtlepatterns.com/patterns/scribble_light.png) ;
 }
 
-.home-container{
-   min-height:650px;
-}
-
-#information-container{
-  margin-left:-5px;
-  margin-right: -5px;
-}
-.item{
-  padding-left:5px;
-  padding-right:5px;
-  .thumbnail{
-    # background-color: #E6E6FA;
-    # background-color:#f7f7f9;
-    margin-bottom:10px;
-  }
-}
-
-.my-dropdown{
-  span{
-      color: #eea236;
-  }
-}
 
 .footer{
    padding-bottom:15px;
-}
-
-.main-category{
-  margin-bottom: 30px;
-  # background-color: #f7f7f9;
-  .btn{
-    padding: 0;
-    font-size: 18px;
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    @include border-radius(20%);
-    border: 1px solid #acacac;
-  }
-  @media(max-width:767px){
-    .btn {
-      padding: 0;
-      font-size: 13px;
-      margin: 10px 2px;
-      width: 64px;
-      height: 64px;
-      line-height: 64px;
-      @include border-radius(20%);
-      border: 1px solid #acacac;
-    }
-  }
-
-}
-.nav-rect{
-
-  font-size: 18px;
-  margin: 20px;
-  width: 100px;
-  height: 100px;
-  line-height: 80px;
-  text-align: center;
-  vertical-align: middle;
-  padding: 10px;
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-  @include border-radius(50%);
-  border: 1px solid #acacac;
-}
-.nav-rect-content{
-  margin: auto;
-}
-.nav-rect-blue{
-  color: #2299dd;
 }

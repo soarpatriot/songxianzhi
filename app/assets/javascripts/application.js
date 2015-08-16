@@ -21,7 +21,6 @@
 //= require nprogress-turbolinks
 
 //= require bootstrap
-//= require masonry.pkgd
 //= require imagesloaded.pkgd.min
 //= require fastclick
 //= require animo
@@ -32,7 +31,6 @@
 //= require blueimp-gallery-indicator
 //= require jquery.blueimp-gallery
 
-//= require home
 //= require click
 //= require information
 

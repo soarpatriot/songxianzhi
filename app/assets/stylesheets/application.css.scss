@@ -12,12 +12,9 @@
  *
  *= require_self
  *= require home
- *= require information
- *= require sidebar
 
 
  *= require ngprogress
- *= require shop
  *= require animate+animo
 
  *= require blueimp-gallery.min
@@ -60,5 +57,10 @@
 
 .voters{
   float: left;
+  
+}
+
+.comments-text{
+    padding-top:8px;
   
 }

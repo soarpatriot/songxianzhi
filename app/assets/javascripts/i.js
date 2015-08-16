@@ -20,7 +20,7 @@
 //= require jquery.turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
-
+//= require animo
 //= require bootstrap
 
 
@@ -55,4 +55,4 @@
 //= require information
 
 //= require i_shop_new
-
+//= require posts

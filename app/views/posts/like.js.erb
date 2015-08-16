@@ -2,13 +2,10 @@
   $("#favorite-icon").removeClass("fa-heart-o");
   $("#favorite-icon").addClass("fa-heart");
   //$('#favorite-icon').animo( { animation: ['tada'], duration: 2 } );
-
-  console.log("<%= @likes %>");
 <% else %>
   $("#favorite-icon").removeClass("fa-heart");
   $("#favorite-icon").addClass("fa-heart-o");
   //$('#favorite-icon').animo( { animation: ['tada', 'bounce'], duration: 2 } );
-  console.log("<%= @likes %>");
 <% end %>
 
 <% @voters.each do |voter| %>
