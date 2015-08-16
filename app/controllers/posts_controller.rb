@@ -17,6 +17,13 @@ class PostsController < ApplicationController
      @comment = Comment.new
      @comments = @post.comments.page params[:page]
      @voters = @post.votes_for.up.by_type(User).voters
+
+     @share_data = Hash.new 
+     @share_data[:img_url] = @post.photos.first.image.thumb.url
+     @share_data[:title] = @post.description
+     @share_data[:content] = @post.description
+  
+     @share_data[:link] = share_link_url(post_url(@post))
    end
     
 

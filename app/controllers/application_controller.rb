@@ -8,8 +8,17 @@ class ApplicationController < ActionController::Base
 
 
   def current_user
-    @current_user = User.find(1)
-    #@current_user = User.find(session[:user_id]) unless session[:user_id].nil?
+    # @current_user = User.find(1)
+    @current_user = User.find(session[:user_id]) unless session[:user_id].nil?
+  end
+   
+  def share_link_url post_url
+    weixin_base = "https://open.weixin.qq.com/connect/oauth2/authorize?"
+    appid="wx5940611bb6faccc3"
+    encode_url = ERB::Util.url_encode(post_url)
+    # encode_url = URI.escape(redirect_url) 
+    share_url = "#{weixin_base}appid=#{appid}&redirect_uri=#{encode_url}&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
+    share_url
   end
 
   def authorize

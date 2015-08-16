@@ -1,5 +1,5 @@
 
-
+  
 .media 
   .media-left
     a href="#"
@@ -77,4 +77,10 @@ p
 .row
  .col-lg-12.toolbar
       .pull-right = paginate @comments, theme: 'twitter-bootstrap-3'
+
+input id="share-url" type="hidden" value="#{@share_data[:link]}"
+input id="share-title" type="hidden" value="#{@share_data[:title]}"
+input id="share-content" type="hidden" value="#{@share_data[:content]}"
+input id="share-image-url" type="hidden" value="#{@share_data[:img_url]}"
+
 = render "shared/posts/gallery"
