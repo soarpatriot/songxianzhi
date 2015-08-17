@@ -3,7 +3,7 @@
   .media 
     .media-left
       a href="#"
-        img class="media-object media-head" src="#{@current_user.try(:headimgurl)}" 
+        img class="media-object media-head" src="#{@post.try(:user).try(:headimgurl)}" 
 
     .media-body
       h4.media-heading #{@post.user.nickname}

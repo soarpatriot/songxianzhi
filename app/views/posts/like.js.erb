@@ -8,8 +8,8 @@
   //$('#favorite-icon').animo( { animation: ['tada', 'bounce'], duration: 2 } );
 <% end %>
 
+var votersHtml = ""
 <% @voters.each do |voter| %>
-  var votersHtml = ""
   var tmp ='<a href="#"><img src="<%= voter.headimgurl%>" class="media-head"/></a>';
   votersHtml = votersHtml + tmp
   

@@ -7,12 +7,10 @@ class PostsController < ApplicationController
    end 
 
    def new 
-     authorize 
      @post = Post.new
    end
 
    def show
-     authorize 
      @post = Post.find(params[:id])
      @comment = Comment.new
      @comments = @post.comments.page params[:page]
@@ -84,6 +82,7 @@ class PostsController < ApplicationController
        @post.photos = photos
      end
      @post.save
+     @post.sending!
      if @current_user.posts << @post and not @current_user.nil?
        redirect_to @post
      else
