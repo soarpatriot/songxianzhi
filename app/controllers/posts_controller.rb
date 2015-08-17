@@ -29,7 +29,7 @@ class PostsController < ApplicationController
      @nocestr = 1234567890
      @timestamp = DateTime.now.to_i
      @app_id = "wx5940611bb6faccc3"
-     @sign = signature(@nocestr,@timestamp,share_url) 
+     @sign = signature(@nocestr,@timestamp,post_url(@post)) 
    end
     
 
