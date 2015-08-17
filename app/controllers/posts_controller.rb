@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
    
-    
+   before_action  :authorize 
    before_action :current_user
-   before_action :js_ticket 
    def index 
 
    end 
