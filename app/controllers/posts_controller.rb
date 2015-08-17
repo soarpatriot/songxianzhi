@@ -13,6 +13,7 @@ class PostsController < ApplicationController
    end
 
    def show
+     authorize 
      @post = Post.find(params[:id])
      @comment = Comment.new
      @comments = @post.comments.page params[:page]

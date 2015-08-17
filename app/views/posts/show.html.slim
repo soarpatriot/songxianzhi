@@ -1,90 +1,90 @@
-
+#posts-show
   
-.media 
-  .media-left
-    a href="#"
-      img class="media-object media-head" src="#{@current_user.try(:headimgurl)}" 
+  .media 
+    .media-left
+      a href="#"
+        img class="media-object media-head" src="#{@current_user.try(:headimgurl)}" 
 
-  .media-body
-    h4.media-heading #{@post.user.nickname}
-    p #{@post.description}
-    
-    - @post.photos.each do | photo | 
-      a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
-        img class="img-thumbnail img-inline" src="#{photo.image.try(:thumb).try(:url)}"
-    p
-      small.text-muted #{time_ago_in_words @post.created_at}
-    p
-      - if @post.sent? 
-        span.label.label-default 已送出
-      - if @post.sending? and @current_user.id == @post.user.id 
-        = link_to "已送出", sent_post_path(@post), method: :patch,class: "btn btn-danger"
+    .media-body
+      h4.media-heading #{@post.user.nickname}
+      p #{@post.description}
+      
+      - @post.photos.each do | photo | 
+        a href="#{photo.image.url}" title="#{photo.image.file.filename}" download="#{photo.image.file.filename}" data-gallery="data-gallery"
+          img class="img-thumbnail img-inline" src="#{photo.image.try(:thumb).try(:url)}"
+      p
+        small.text-muted #{time_ago_in_words @post.created_at}
+      p
+        - if @post.sent? 
+          span.label.label-default 已送出
+        - if @post.sending? and @current_user.id == @post.user.id 
+          = link_to "已送出", sent_post_path(@post), method: :patch,class: "btn btn-danger"
 
-    p
-    .like-area
-      .like-opt
-        - unless @current_user.nil?
-          = link_to like_post_path(@post), class: "favorite-btn", method: "post", remote: true do
-            span.favorite-span
-                - if @current_user.voted_for? @post
-                  i id="favorite-icon" class="fa fa-heart favorite-heart"
-                - else
-                  i id="favorite-icon" class="fa fa-heart-o favorite-heart"
-                //
-                  span.like-count #{@post.get_likes.size}
-      .voters 
-        - @voters.each do |voter|    
-          a(herf="#user")
-            img src="#{voter.headimgurl}" class="media-head"
+      p
+      .like-area
+        .like-opt
+          - unless @current_user.nil?
+            = link_to like_post_path(@post), class: "favorite-btn", method: "post", remote: true do
+              span.favorite-span
+                  - if @current_user.voted_for? @post
+                    i id="favorite-icon" class="fa fa-heart favorite-heart"
+                  - else
+                    i id="favorite-icon" class="fa fa-heart-o favorite-heart"
+                  //
+                    span.like-count #{@post.get_likes.size}
+        .voters 
+          - @voters.each do |voter|    
+            a(herf="#user")
+              img src="#{voter.headimgurl}" class="media-head"
 
-p
-  #comment-modal.modal.fade.bs-example-modal-lg
-    .modal-dialog.modal-lg
-      .modal-content
-         = simple_form_for @comment, url: commented_post_path(@post), method:"patch" do |f|
-          .modal-body
-              = f.error_notification
-              = f.input :content, label:false, as: :text, input_html:{rows:10}
-          .modal-footer
-              
-              = f.submit '评',class:"btn btn-primary"
-              button type="button" class="btn btn-default" data-dismiss="modal" 取消
+  p
+    #comment-modal.modal.fade.bs-example-modal-lg
+      .modal-dialog.modal-lg
+        .modal-content
+           = simple_form_for @comment, url: commented_post_path(@post), method:"patch" do |f|
+            .modal-body
+                = f.error_notification
+                = f.input :content, label:false, as: :text, input_html:{rows:10}
+            .modal-footer
+                
+                = f.submit '评',class:"btn btn-primary"
+                button type="button" class="btn btn-default" data-dismiss="modal" 取消
 
 
-hr
-.row
- .col-xs-3
-   .comments-text 评论 
- .col-xs-3.col-xs-offset-6
-    a(href="#comment-modal" class="comments-btn" data-toggle="modal" data-target="#comment-modal")
-      i.fa.fa-comments
-- @comments.each do | comment |
-    .media 
-      .media-left
-        a href="#"
-          img class="media-object media-head" src="#{comment.user.try(:headimgurl)}" 
+  hr
+  .row
+   .col-xs-3
+     .comments-text 评论 
+   .col-xs-3.col-xs-offset-6
+      a(href="#comment-modal" class="comments-btn" data-toggle="modal" data-target="#comment-modal")
+        i.fa.fa-comments
+  - @comments.each do | comment |
+      .media 
+        .media-left
+          a href="#"
+            img class="media-object media-head" src="#{comment.user.try(:headimgurl)}" 
 
-      .media-body
-        p
-     
-          | #{comment.content}
-        p.pull-right
-          small #{comment.user.nickname}
-          span &nbsp;&nbsp;
-          small.text-muted #{time_ago_in_words comment.created_at}
+        .media-body
+          p
+       
+            | #{comment.content}
+          p.pull-right
+            small #{comment.user.nickname}
+            span &nbsp;&nbsp;
+            small.text-muted #{time_ago_in_words comment.created_at}
 
-p 
-.row
- .col-lg-12.toolbar
-      .pull-right = paginate @comments, theme: 'twitter-bootstrap-3'
+  p 
+  .row
+   .col-lg-12.toolbar
+        .pull-right = paginate @comments, theme: 'twitter-bootstrap-3'
 
-input id="share-url" type="hidden" value="#{@share_data[:link]}"
-input id="share-title" type="hidden" value="#{@share_data[:title]}"
-input id="share-content" type="hidden" value="#{@share_data[:content]}"
-input id="share-image-url" type="hidden" value="#{@share_data[:img_url]}"
-input id="noncestr" type="hidden" value="#{@nocestr}"
-input id="timestamp" type="hidden" value="#{@timestamp}"
-input id="sign" type="hidden" value="#{@sign}"
-input id="app-id" type="hidden" value="#{@app_id}"
+  input id="share-url" type="hidden" value="#{@share_data[:link]}"
+  input id="share-title" type="hidden" value="#{@share_data[:title]}"
+  input id="share-content" type="hidden" value="#{@share_data[:content]}"
+  input id="share-image-url" type="hidden" value="#{@share_data[:img_url]}"
+  input id="noncestr" type="hidden" value="#{@nocestr}"
+  input id="timestamp" type="hidden" value="#{@timestamp}"
+  input id="sign" type="hidden" value="#{@sign}"
+  input id="app-id" type="hidden" value="#{@app_id}"
 
-= render "shared/posts/gallery"
+  = render "shared/posts/gallery"
