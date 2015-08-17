@@ -22,7 +22,7 @@
 //= require nprogress-turbolinks
 //= require animo
 //= require bootstrap
-
+//= jweixin-1.0.0
 
 
 //= require jquery.ui.widget

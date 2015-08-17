@@ -2,7 +2,7 @@ class PostsController < ApplicationController
    
     
    before_action :current_user
-    
+   before_action :js_ticket 
    def index 
 
    end 
@@ -23,7 +23,13 @@ class PostsController < ApplicationController
      @share_data[:title] = @post.description
      @share_data[:content] = @post.description
   
-     @share_data[:link] = share_link_url(post_url(@post))
+     share_url = share_link_url(post_url(@post))
+     @share_data[:link] = share_url 
+
+     @nocestr = 1234567890
+     @timestamp = DateTime.now.to_i
+     @app_id = "wx5940611bb6faccc3"
+     @sign = signature(@nocestr,@timestamp,share_url) 
    end
     
 

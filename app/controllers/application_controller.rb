@@ -21,6 +21,64 @@ class ApplicationController < ActionController::Base
     share_url
   end
 
+  def access_token
+     token = AccessToken.first
+     now = DateTime.now.to_i
+     if token.nil? || (now - token.updated_at.to_i) > 6000    
+       wenxin_base = "https://api.weixin.qq.com/cgi-bin/token?"
+       appid = "wx5940611bb6faccc3"
+       secret = "655870e4c49d7e85b6b2222a1ee470eb"
+       grant_type = "client_credential"
+       
+       url = "#{wenxin_base}appid=#{appid}&secret=#{secret}&grant_type=#{grant_type}"
+   
+       response = RestClient.get url 
+       Rails.logger.info "response: #{response}"
+       parsed = JSON.parse(response, symbolize_names:true)
+       token_value = parsed[:access_token]
+       token = AccessToken.first_or_create 
+       token.value = token_value 
+       token.save
+     else 
+       token_value = token.value 
+     end 
+     token_value
+  end
+
+  def js_ticket 
+     token = access_token  
+     ticket = Ticket.first 
+     now = DateTime.now.to_i
+     if ticket.nil? || (now - ticket.updated_at.to_i) > 6000    
+       wenxin_base = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?"
+       
+       url = "#{wenxin_base}access_token=#{token}&type=jsapi"
+   
+       response = RestClient.get url 
+       Rails.logger.info "response: #{response}"
+       parsed = JSON.parse(response, symbolize_names:true)
+       ticket = Ticket.first_or_create
+       ticket_value = parsed[:ticket]
+       ticket.update value: ticket_value
+     else 
+       ticket_value = ticket.value
+     end
+     ticket_value
+  end
+
+  def signature nocestr, timestamp, post_url 
+    arr = []
+    noce=  "nocestr=#{nocestr}"
+    ticket = "jsapi_ticket=#{js_ticket}"
+    timestamp ="timestamp=#{timestamp}"
+    url = "url=#{post_url}"
+    
+    arr = [noce,ticket,timestamp,url]
+    sign_oringal = arr.sort!.join("&")
+    Digest::SHA1.hexdigest(sign_oringal) 
+  end
+
+
   def authorize
      code =  params[:code]
      state =  params[:state]
