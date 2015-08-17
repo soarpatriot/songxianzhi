@@ -55,7 +55,10 @@
   width: 36px;
 }
 .like-area{
-  @extend .clearfix
+  @extend .clearfix;
+  margin: 5px;
+  padding: 5px;
+  background-color: #f9f9f9;
 }
 .like-opt{
   float:left;

@@ -13,7 +13,7 @@ $(function() {
     var nonceStr = $("#noncestr").val();
     var signature = $("#sign").val();
     wx.config({
-        debug: true,
+        debug: false,
         appId: appId,
         timestamp: timestamp,
         nonceStr:  nonceStr,
