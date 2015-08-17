@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
 
   def signature nocestr, timestamp, post_url 
     arr = []
-    noce=  "nocestr=#{nocestr}"
+    noce=  "noncestr=#{nocestr}"
     ticket = "jsapi_ticket=#{js_ticket}"
     timestamp ="timestamp=#{timestamp}"
     url = "url=#{post_url}"
