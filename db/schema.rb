@@ -11,10 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817002631) do
+ActiveRecord::Schema.define(version: 20150817065552) do
 
   create_table "access_tokens", force: true do |t|
-    t.text "value"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", force: true do |t|
@@ -22,8 +24,8 @@ ActiveRecord::Schema.define(version: 20150817002631) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "user_id"
-    t.datetime "created_at",       default: '2015-08-13 22:39:43'
-    t.datetime "updated_at",       default: '2015-08-13 22:39:43'
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photos", force: true do |t|

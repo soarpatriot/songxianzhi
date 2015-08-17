@@ -33,18 +33,14 @@ class PostsController < ApplicationController
 
 
    def commented
-    @post = Post.find(params[:id])
-    @comment = Comment.new comment_params
-    @comment.user = @current_user
-    ###comment.save
-    @post.comments << @comment
-      #@comment = Comment.new
-    #@category = @information.category
-    #@comments = @information.comments.page params[:page]
+     @post = Post.find(params[:id])
+     #  comment = Comment.new comment_params
+     #  comment.user = @current_user
 
-    #render "show"
-    redirect_to @post
-  end
+     @post.comments.create user: @current_user, content: comment_params[:content] 
+
+     redirect_to @post
+   end
 
 
    def upload
