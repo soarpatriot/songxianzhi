@@ -44,10 +44,16 @@
 }
 
 .media-head{
+  width: 54px;
+}
+
+.wanted-head{
   width: 36px;
   margin: 0 5px;
 }
-
+.comments-head{
+  width: 36px;
+}
 .like-area{
   @extend .clearfix
 }

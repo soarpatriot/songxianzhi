@@ -10,7 +10,7 @@
 
 var votersHtml = ""
 <% @voters.each do |voter| %>
-  var tmp ='<a href="#"><img src="<%= voter.headimgurl%>" class="media-head"/></a>';
+  var tmp ='<a href="#"><img src="<%= voter.headimgurl%>" class="wanted-head"/></a>';
   votersHtml = votersHtml + tmp
   
   $(".voters").html(votersHtml);
