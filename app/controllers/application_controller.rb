@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
 
   def current_user
-    @current_user = User.find(1)
-    # @current_user = User.find(session[:user_id]) unless session[:user_id].nil?
+    # @current_user = User.find(1)
+    @current_user = User.find(session[:user_id]) unless session[:user_id].nil?
   end
    
   def share_link_url post_url

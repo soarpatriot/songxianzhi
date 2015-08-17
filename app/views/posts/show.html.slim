@@ -24,6 +24,7 @@
       .like-area
         .like-opt
           - unless @current_user.nil?
+            span.label.label-success 想要
             = link_to like_post_path(@post), class: "favorite-btn", method: "post", remote: true do
               span.favorite-span
                   - if @current_user.voted_for? @post
