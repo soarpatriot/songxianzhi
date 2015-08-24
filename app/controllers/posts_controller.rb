@@ -77,9 +77,8 @@ class PostsController < ApplicationController
        photos = Photo.find(post_params[:photo_ids])
        @post.photos = photos
      end
-     @post.save
-     @post.sending!
      if @current_user.posts << @post and not @current_user.nil?
+       @post.sending!
        redirect_to @post
      else
        render :new

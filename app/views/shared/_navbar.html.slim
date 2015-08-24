@@ -5,7 +5,8 @@ nav id="navbar" class="navbar navbar-inverse navbar-fixed-bottom" role="navigati
           span class="icon-bar"
           span class="icon-bar"
           span class="icon-bar"
-      .navbar-send
+      - unless params["controller"] == "posts" and (params["action"] == "new" or params["action"] == "create")
+        .navbar-send
           = link_to "我要送", new_post_path, class:"btn btn-warning btn-send"
       #bs-navbar class="navbar-collapse collapse fade"
         ul class="nav navbar-nav pull-right"
