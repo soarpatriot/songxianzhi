@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
    def index
       weixin_base = "https://open.weixin.qq.com/connect/oauth2/authorize?"
-      appid="wx5940611bb6faccc3"
+      appid= Settings.appid
       redirect_url = "http://www.cityhub.me/posts/new"
       encode_url = ERB::Util.url_encode(redirect_url)
       # encode_url = URI.escape(redirect_url) 

@@ -34,5 +34,6 @@
 //= require click
 //= require information
 
+//= require pay_index
 
 

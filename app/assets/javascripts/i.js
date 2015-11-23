@@ -57,3 +57,5 @@
 //= require i_shop_new
 //= require posts
 //= require wechat
+
+//= require pay_index

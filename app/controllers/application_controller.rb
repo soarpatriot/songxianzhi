@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
    
   def share_link_url post_url
     weixin_base = "https://open.weixin.qq.com/connect/oauth2/authorize?"
-    appid="wx5940611bb6faccc3"
+    appid= Settings.appid
     encode_url = ERB::Util.url_encode(post_url)
     # encode_url = URI.escape(redirect_url) 
     share_url = "#{weixin_base}appid=#{appid}&redirect_uri=#{encode_url}&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
@@ -26,8 +26,8 @@ class ApplicationController < ActionController::Base
      now = DateTime.now.to_i
      if token.nil? || (now - token.updated_at.to_i) > 6000    
        wenxin_base = "https://api.weixin.qq.com/cgi-bin/token?"
-       appid = "wx5940611bb6faccc3"
-       secret = "655870e4c49d7e85b6b2222a1ee470eb"
+       appid = Settings.appid
+       secret = Settings.app_secret
        grant_type = "client_credential"
        
        url = "#{wenxin_base}appid=#{appid}&secret=#{secret}&grant_type=#{grant_type}"
@@ -85,8 +85,9 @@ class ApplicationController < ActionController::Base
      unless code.blank?
        wenxin_base = "https://api.weixin.qq.com/sns/oauth2/access_token?"
        user_info_base = "https://api.weixin.qq.com/sns/userinfo?access_token"
-       appid = "wx5940611bb6faccc3"
-       secret = "655870e4c49d7e85b6b2222a1ee470eb"
+       appid = Settings.appid
+       secret = Settings.app_secret
+ 
        grant_type = "authorization_code"
        
        url = "#{wenxin_base}appid=#{appid}&secret=#{secret}&code=#{code}&grant_type=#{grant_type}"
@@ -106,6 +107,7 @@ class ApplicationController < ActionController::Base
          @user = User.where(openid:user_data[:openid]).first_or_create 
          @user.update openid: user_data[:openid], nickname: user_data[:nickname], sex: user_data[:sex], province: user_data[:province], city: user_data[:city], headimgurl: user_data[:headimgurl], unionid: user_data[:unionid]
          session[:user_id] = @user.id 
+         session[:openid] = openid 
        end 
      end
 
