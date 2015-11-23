@@ -39,6 +39,7 @@ class PayController < ApplicationController
   end
 
   def make_playload(params)
+      logger.info "params: #{params}"
       sign = sign_params(params)
       params.delete(:key) if params[:key]
       "<xml>#{params.map { |k, v| "<#{k}>#{v}</#{k}>" }.join}<sign>#{sign}</sign></xml>"
