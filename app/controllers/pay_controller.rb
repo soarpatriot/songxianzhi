@@ -6,7 +6,7 @@ class PayController < ApplicationController
     #   response = RestClient.post params 
    
     r = invoke_remote pay_url, make_playload(gen_params)       
-    puts r
+    logger.info r
   end
 
   def gen_params
