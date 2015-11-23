@@ -24,7 +24,7 @@ class PostsController < ApplicationController
      share_url = share_link_url(post_url(@post))
      @share_data[:link] = share_url 
 
-     @nocestr = 1234567890
+     @nocestr = Settings.nonce_str
      @timestamp = DateTime.now.to_i
      @app_id = "wx5940611bb6faccc3"
      @sign = signature(@nocestr,@timestamp,request.url) 

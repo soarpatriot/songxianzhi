@@ -5,6 +5,8 @@ class PayController < ApplicationController
   before_action :current_user
  
   def index
+
+
     pay_url = "https://api.mch.weixin.qq.com/pay/unifiedorder"
     
     #   response = RestClient.post params 
